@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>技术论坛首页</title>
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+    <div class="header">
+        <h1>技术论坛</h1>
+        <p>分享知识，建立社区</p>
+    </div>
+
+    <div class="container">
+        <div class="nav">
+            <a href="index.html" style="background:#0066cc;color:white;">首页</a>
+            <a href="login.html">登录</a>
+            <a href="register.html">注册</a>
+        </div>
+
+        <!-- 热门话题 -->
+        <div class="content">
+            <h2>🔥 热门话题</h2>
+            <table>
+                <tr><th>话题标题</th><th>发起人</th><th>浏览</th><th>回复</th></tr>
+                <tr><td>如何学好Java Web开发？</td><td>张三</td><td>1230</td><td>45</td></tr>
+                <tr><td>MySQL性能优化实战经验分享</td><td>李四</td><td>980</td><td>32</td></tr>
+                <tr><td>前端框架选择：React vs Vue</td><td>王五</td><td>756</td><td>28</td></tr>
+            </table>
+        </div>
+
+        <!-- 最新帖子 -->
+        <div class="content">
+            <h2>📝 最新帖子</h2>
+            <table>
+                <tr><th>发布者</th><th>帖子内容</th><th>发布时间</th></tr>
+                <tr><td>赵六</td><td>今天学习了Servlet和JSP，感觉很有收获！</td><td>刚刚</td></tr>
+                <tr><td>孙七</td><td>分享一个很不错的在线编程学习网站！</td><td>10分钟前</td></tr>
+                <tr><td>周八</td><td>有人可以帮忙解答一下HTML5的问题吗？</td><td>30分钟前</td></tr>
+            </table>
+        </div>
+
+        <!-- 论坛分类 -->
+        <div class="content">
+            <h2>💻 论坛分类</h2>
+            <table>
+                <tr><th>分类名称</th><th>主题数</th><th>帖子数</th></tr>
+                <tr><td>Java技术</td><td>1,234</td><td>12,345</td></tr>
+                <tr><td>前端开发</td><td>2,456</td><td>23,456</td></tr>
+                <tr><td>数据库</td><td>890</td><td>8,901</td></tr>
+                <tr><td>开发工具</td><td>567</td><td>5,678</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <p>&copy; 2025 技术论坛 | 太原理工大学 Web系统和技术实验一 | 当前时间：<span id="currentTime"></span></p>
+    </div>
+
+    <script>
+        function updateTime() {
+            var now = new Date();
+            var str = now.getFullYear() + '-' + 
+                      String(now.getMonth()+1).padStart(2,'0') + '-' + 
+                      String(now.getDate()).padStart(2,'0') + ' ' +
+                      String(now.getHours()).padStart(2,'0') + ':' + 
+                      String(now.getMinutes()).padStart(2,'0') + ':' + 
+                      String(now.getSeconds()).padStart(2,'0');
+            document.getElementById('currentTime').textContent = str;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

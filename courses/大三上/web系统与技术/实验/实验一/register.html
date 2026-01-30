@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+    <div class="header">
+        <h1>技术论坛</h1>
+        <p>欢迎加入我们的社区</p>
+    </div>
+
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">首页</a>
+            <a href="login.html">登录</a>
+            <a href="register.html" style="background:#0066cc;color:white;">注册</a>
+        </div>
+
+        <div class="success-msg" id="successMsg">✓ 注册成功！您的账号已创建。</div>
+
+        <div class="form-container">
+            <h2>用户注册</h2>
+            <form id="registerForm" onsubmit="return handleRegister(event)">
+                <div class="form-group">
+                    <label>用户名 <span style="color:red;">*</span></label>
+                    <input type="text" id="username" placeholder="请输入用户名">
+                    <span class="error-msg" id="err_username">用户名不能为空</span>
+                </div>
+                <div class="form-group">
+                    <label>邮箱 <span style="color:red;">*</span></label>
+                    <input type="email" id="email" placeholder="请输入邮箱地址">
+                    <span class="error-msg" id="err_email">请输入有效的邮箱</span>
+                </div>
+                <div class="form-group">
+                    <label>密码 <span style="color:red;">*</span></label>
+                    <input type="password" id="password" placeholder="至少6位密码">
+                    <span class="error-msg" id="err_password">密码至少需要6位</span>
+                </div>
+                <div class="form-group">
+                    <label>确认密码 <span style="color:red;">*</span></label>
+                    <input type="password" id="confirm" placeholder="再次输入密码">
+                    <span class="error-msg" id="err_confirm">两次密码不一致</span>
+                </div>
+                <div class="form-group">
+                    <label>性别</label>
+                    <div>
+                        <input type="radio" id="male" name="gender" value="男"> 男
+                        <input type="radio" id="female" name="gender" value="女" style="margin-left:15px;"> 女
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="agree">
+                    <label for="agree" style="display:inline;font-weight:normal;">我同意用户协议</label>
+                    <span class="error-msg" id="err_agree">必须同意协议</span>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">注册</button>
+                    <button type="reset" class="btn-secondary">重置</button>
+                </div>
+            </form>
+            <div class="footer-links">已有账号？<a href="login.html">立即登录</a></div>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <p>&copy; 2025 技术论坛 | 太原理工大学 Web系统和技术实验一</p>
+    </div>
+
+    <script>
+        function handleRegister(event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var password = document.getElementById('password').value;
+            var confirm = document.getElementById('confirm').value;
+            var agree = document.getElementById('agree').checked;
+            
+            document.querySelectorAll('.error-msg').forEach(e => e.classList.remove('show'));
+            var valid = true;
+            
+            if (username === '') { document.getElementById('err_username').classList.add('show'); valid = false; }
+            if (!email || !email.includes('@')) { document.getElementById('err_email').classList.add('show'); valid = false; }
+            if (password.length < 6) { document.getElementById('err_password').classList.add('show'); valid = false; }
+            if (password !== confirm) { document.getElementById('err_confirm').classList.add('show'); valid = false; }
+            if (!agree) { document.getElementById('err_agree').classList.add('show'); valid = false; }
+            
+            if (valid) {
+                document.getElementById('successMsg').classList.add('show');
+                setTimeout(function() {
+                    document.getElementById('registerForm').reset();
+                    document.getElementById('successMsg').classList.remove('show');
+                }, 2000);
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

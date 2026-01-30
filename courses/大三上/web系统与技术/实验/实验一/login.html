@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+    <div class="header">
+        <h1>技术论坛</h1>
+        <p>登录您的账号</p>
+    </div>
+
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">首页</a>
+            <a href="login.html" style="background:#0066cc;color:white;">登录</a>
+            <a href="register.html">注册</a>
+        </div>
+
+        <div class="success-msg" id="successMsg">✓ 登录成功！欢迎回来。</div>
+
+        <div class="form-container">
+            <h2>用户登录</h2>
+            <form id="loginForm" onsubmit="return handleLogin(event)">
+                <div class="form-group">
+                    <label>用户名 <span style="color:red;">*</span></label>
+                    <input type="text" id="username" placeholder="请输入用户名">
+                    <span class="error-msg" id="err_username">用户名不能为空</span>
+                </div>
+                <div class="form-group">
+                    <label>密码 <span style="color:red;">*</span></label>
+                    <input type="password" id="password" placeholder="请输入密码">
+                    <span class="error-msg" id="err_password">密码至少需要6位</span>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="remember">
+                    <label for="remember" style="display:inline;font-weight:normal;">记住我</label>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">登录</button>
+                    <button type="reset" class="btn-secondary">取消</button>
+                </div>
+            </form>
+            <div class="footer-links">还没有账号？<a href="register.html">立即注册</a></div>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <p>&copy; 2025 技术论坛 | 太原理工大学 Web系统和技术实验一</p>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value;
+            
+            document.querySelectorAll('.error-msg').forEach(e => e.classList.remove('show'));
+            var valid = true;
+            
+            if (username === '') {
+                document.getElementById('err_username').classList.add('show');
+                valid = false;
+            }
+            if (password.length < 6) {
+                document.getElementById('err_password').classList.add('show');
+                valid = false;
+            }
+            
+            if (valid) {
+                document.getElementById('successMsg').classList.add('show');
+                setTimeout(function() {
+                    document.getElementById('loginForm').reset();
+                    document.getElementById('successMsg').classList.remove('show');
+                }, 2000);
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
